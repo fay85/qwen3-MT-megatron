@@ -40,8 +40,8 @@ MISSING=0
 for d in "$WORK_HOME" "$PATCH_HOME" "$MEGATRON_PATH"; do
     if [ ! -d "$d" ]; then echo "ERROR: directory not found: $d"; MISSING=1; fi
 done
-if [ ! -f "$WORK_HOME/pretrain_gpt.py" ]; then
-    echo "ERROR: pretrain_gpt.py not found in $WORK_HOME"; MISSING=1
+if [ ! -f "$WORK_HOME/pretrain_gpt_with_profiler.py" ]; then
+    echo "ERROR: pretrain_gpt_with_profiler.py not found in $WORK_HOME"; MISSING=1
 fi
 if [ ! -f "$HOSTFILE" ]; then
     echo "ERROR: hostfile not found: $HOSTFILE"; MISSING=1
@@ -206,7 +206,7 @@ TRANSFORMER_ENGINE_ARGS=(
     --fp8-param-gather
 )
 
-cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt.py \
+cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt_with_profiler.py \
         ${MODEL_ARGS[@]} \
         ${TRAINING_ARGS[@]} \
         ${REGULARIZATION_ARGS[@]} \
