@@ -155,9 +155,6 @@ MODEL_PARALLEL_ARGS=(
     --tensor-model-parallel-size $TP_SIZE
     --pipeline-model-parallel-size $PP_SIZE
 )
-if [ "$PP_SIZE" -gt 1 ]; then
-    MODEL_PARALLEL_ARGS+=(--decoder-last-pipeline-num-layers 32)
-fi
 
 MIXED_PRECISION_ARGS=(
     --bf16
