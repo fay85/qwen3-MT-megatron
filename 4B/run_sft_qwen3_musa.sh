@@ -187,7 +187,7 @@ TRANSFORMER_ENGINE_ARGS=(
     --fp8-param-gather
 )
 
-cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt_with_profiler.py \
+cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt.py \
         ${MODEL_ARGS[@]} \
         ${TRAINING_ARGS[@]} \
         ${REGULARIZATION_ARGS[@]} \
