@@ -29,6 +29,18 @@ export MUSA_KERNEL_TIMEOUT=3200000
 export ACCELERATOR_BACKEND="musa"
 export MCCL_PROTOS=2
 export MCCL_CHECK_POINTERS=0
+export MCCL_IB_GID_INDEX=3
+export MCCL_ALGOS=1
+export MCCL_BUFFSIZE=20971520
+export MCCL_NET_SHARED_BUFFERS=0
+export MCCL_IB_TC=136
+export MCCL_IB_QPS_PER_CONNECTION=16
+export MCCL_CROSS_NIC=0
+export MCCL_IB_TIMEOUT=20
+export MCCL_IB_RETRY_CNT=7
+export MCCL_LIB=/usr/local/musa/lib/libmccl.so
+export TORCH_MCCL_AVOID_RECORD_STREAMS=1
+
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 
 MEGATRON_PATH=${PATCH_HOME}/../Megatron-LM
@@ -202,6 +214,8 @@ TRANSFORMER_ENGINE_ARGS=(
     --fp8-format hybrid
     --fp8-param-gather
 )
+
+unset MCCL_IB_HCA
 
 cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt.py \
         ${MODEL_ARGS[@]} \
