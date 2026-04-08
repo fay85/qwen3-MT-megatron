@@ -212,7 +212,7 @@ EVAL_AND_LOGGING_ARGS=(
     --tensorboard-dir $TB_PATH
 )
 NUM_LAYERS=$(echo "${MODEL_ARGS[@]}" | grep -oP '(?<=--num-layers )\d+')
-MOE_LAYER_FREQ="([1]*${NUM_LAYERS})*1"
+MOE_LAYER_FREQ="'([1]*${NUM_LAYERS})*1'"
 
 MOE_ARGS=(
     --num-experts 128
