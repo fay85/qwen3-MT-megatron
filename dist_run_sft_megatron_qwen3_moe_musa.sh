@@ -1,9 +1,4 @@
 #!/bin/bash
-# Multi-node SSH launcher for Qwen3-8B SFT on MUSA.
-# Same pattern as examples/llama3/dist_run_pretrain_megatron_llama3_musa.sh.
-#
-# Edit: DATA_PATH, TOKENIZED_MODEL, TP_SIZE/PP_SIZE, hostfile, then run:
-#   cd examples/qwen3 && bash dist_run_sft_megatron_qwen3_musa.sh
 
 CURRENT_TIME=$(date "+%Y-%m-%d_%H:%M:%S")
 echo $CURRENT_TIME
@@ -16,8 +11,8 @@ WORLD_SIZE=8
 MICRO_BATCH_SIZE=1
 NUM_MICROBATCHES=2
 (( EDP_SIZE = $WORLD_SIZE / ($TP_SIZE * $PP_SIZE * $EP_SIZE) ))
-echo "EDP_SIZE: $EDP_SIZE"
-(( GLOBAL_BATCH_SIZE = $MICRO_BATCH_SIZE * $NUM_MICROBATCHES * $EDP_SIZE ))
+echo "DP_SIZE: $EDP_SIZE"
+(( GLOBAL_BATCH_SIZE = $MICRO_BATCH_SIZE * $NUM_MICROBATCHES * $EDP_SIZE * $EP_SIZE ))
 echo "GLOBAL_BATCH_SIZE: $GLOBAL_BATCH_SIZE"
 
 set -u
