@@ -157,7 +157,6 @@ WARMUP_SAMPLES=$((WARMUP_STEPS * GLOBAL_BATCH_SIZE))
 LEARNING_RATE_ARGS=(
     --lr ${LR:-3e-6}
     --lr-decay-style cosine
-    --lr-warmup-samples ${WARMUP_SAMPLES}
     --min-lr ${MIN_LR:-3e-7}
     --initial-loss-scale 65536
     --min-loss-scale 1.0
