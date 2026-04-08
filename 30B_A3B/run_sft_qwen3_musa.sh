@@ -113,13 +113,10 @@ MODEL_ARGS=(
     --no-rope-fusion
 )
 
-TRAIN_SAMPLES=${TRAIN_SAMPLES:-244140}
-
 TRAINING_ARGS=(
     --seed 42
     --micro-batch-size $MICRO_BATCH_SIZE
     --global-batch-size $GLOBAL_BATCH_SIZE
-    --train-samples $TRAIN_SAMPLES
     --lr-warmup-iters 200
     --train-iters 300
     --init-method-std 0.02 
