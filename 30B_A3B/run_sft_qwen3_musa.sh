@@ -1,13 +1,5 @@
 #!/bin/bash
-# Qwen3-32B SFT on multi-node MUSA GPUs (Megatron-Core + TransformerEngine FP8).
-#
-# HF reference: Qwen/Qwen3-32B
-#   hidden_size=5120, num_layers=64, num_heads=64, num_kv_heads=8,
-#   head_dim=128 (requires --kv-channels 128), intermediate_size=25600,
-#   rope_theta=1e6, rms_norm_eps=1e-6, tie_word_embeddings=false,
-#   vocab_size=151936
-#
-# Args: WORK_HOME PATCH_HOME EXPNAME HOSTFILE DATA_DIR TP PP MBS GBS TOKENIZER RDZV_ID
+# Args: WORK_HOME PATCH_HOME EXPNAME HOSTFILE DATA_DIR TP PP EP MBS GBS TOKENIZER RDZV_ID
 
 set -u
   WORK_HOME=$1
@@ -243,7 +235,7 @@ unset MCCL_IB_HCA
 cmd="torchrun ${DISTRIBUTED_ARGS[@]} $WORK_HOME/pretrain_gpt.py \
         ${MODEL_ARGS[@]} \
         ${TRAINING_ARGS[@]} \
-        ${REGULARIZATION_ARGS[@]}
+        ${REGULARIZATION_ARGS[@]} \
         ${LEARNING_RATE_ARGS[@]} \
         ${MODEL_PARALLEL_ARGS[@]} \
         ${MIXED_PRECISION_ARGS[@]} \
